@@ -6,6 +6,7 @@
           <div class="card-body">
             <b class="card-title"><%= event.creator.email %></b>
             <p class="card-text"><%= event.date %></p>
+            <%= link_to 'Get in', root_path, class: 'btn btn-primary px-4' %>
           </div>
         </div>
       <% end %>

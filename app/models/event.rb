@@ -6,5 +6,7 @@ class Event < ApplicationRecord
 
   has_many :attendees, through: :attendances
 
-  validates :date, presence: true, length: { in: 6..20 }
+  validates :title, presence: true, length: { in: 6..20 }
+  validates :description, presence: true
+  validates :date_time, presence: true
 end

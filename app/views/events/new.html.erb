@@ -1,5 +1,9 @@
 <%= form_with model: @event do |form| %>
-  <%= form.label :date %>
-  <%= form.text_field :date %>
+  <%= form.label :title %><br/>
+  <%= form.text_field :title %><br/>
+  <%= form.label :description %><br/>
+  <%= form.text_area :description %><br/>
+  <%= form.label :date_time %><br/>
+  <%= form.date_field :date_time %><br/>
   <%= form.submit 'Touch it' %>
 <% end %>

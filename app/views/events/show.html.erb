@@ -1,11 +1,13 @@
 <section class="container">
   <article class="border p-4">
+    Event: <i><%= @event.title %></i><br/>
     Author: <b><%= @event.creator.email %></b><br/>
-    Event: <i><%= @event.date %></i><br/>
+
+    Attendees:<br/>
 
     <% @event.attendees.each do |attendee| %>
       <div class="border p-2 mt-2">
-        Attendee: <%= attendee.email %>
+        <%= attendee.email %> <%= link_to '↪', user_path(attendee), class: 'text-decoration-none' %>
       </div>
     <% end %>
 

@@ -4,12 +4,18 @@
       <% @events.each do |event| %>
         <div class="card my-2">
           <div class="card-body">
-            <b class="card-title"><%= event.creator.email %></b>
-            <p class="card-text"><%= event.date %></p>
+            Creator: <b class="card-title"><%= event.creator.email %></b>
+            <p class="card-text">Event: <%= event.title %></p>
             <% if in_attendance?(user: current_user, event_id: event.id) %>
-              <%= button_to 'You in', root_path, class: 'btn btn-secondary px-4', disabled: true %>
+              <div class="d-flex">
+                <%= button_to 'You in', root_path, class: 'btn btn-secondary px-4', disabled: true %>
+                <%= link_to 'Show', event_path(event), class: 'btn btn-link' %>
+              </div>
             <% else %>
-              <%= button_to 'Get in', event_attendances_path(event), method: :post, class: 'btn btn-primary px-4' %>
+              <div class="d-flex">
+                <%= button_to 'Get in', event_attendances_path(event), method: :post, class: 'btn btn-primary px-4' %>
+                <%= link_to 'Show', event_path(event), class: 'btn btn-link' %>
+              </div>
             <% end %>
           </div>
         </div>

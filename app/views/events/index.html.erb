@@ -6,7 +6,7 @@
           <div class="card-body">
             <b class="card-title"><%= event.creator.email %></b>
             <p class="card-text"><%= event.date %></p>
-            <% if in_attendance?(user_id: current_user.id, event_id: event.id) %>
+            <% if in_attendance?(user: current_user, event_id: event.id) %>
               <%= button_to 'You in', root_path, class: 'btn btn-secondary px-4', disabled: true %>
             <% else %>
               <%= button_to 'Get in', event_attendances_path(event), method: :post, class: 'btn btn-primary px-4' %>

@@ -11,6 +11,9 @@
   </head>
 
   <body>
+    <article class="container">
+      <%= debug(params) %>
+    </article>
     <% if flash[:notice] %>
       <p class="alert alert-primary" role="alert"><%= notice %></p>
     <% end %>

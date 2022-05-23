@@ -1,0 +1,13 @@
+<section class="container">
+  <article class="border p-4">
+    Author: <b><%= @event.creator.email %></b><br/>
+    Event: <i><%= @event.date %></i><br/>
+
+    <% @event.attendees.each do |attendee| %>
+      <div class="border p-2 mt-2">
+        Attendee: <%= attendee.email %>
+      </div>
+    <% end %>
+
+  </article>
+</section>

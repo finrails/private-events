@@ -3,9 +3,9 @@ class AttendancesController < ApplicationController
     @attendance = EventAttendance.new(attendee_id: current_user.id, attendeed_event_id: params[:event_id])
 
     if @attendance.save
-      redirect_to root_path, notice: "Nice! You're in for now, good luck."
+      redirect_to events_path, notice: "Nice! You're in for now, good luck."
     else
-      redirect_to root_path, alert: 'Something goes wrong, try do it again.'
+      redirect_to events_path, alert: 'Something goes wrong, try do it again.'
     end
 
   end

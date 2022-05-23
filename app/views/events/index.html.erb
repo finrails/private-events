@@ -4,8 +4,9 @@
       <% @events.each do |event| %>
         <div class="card my-2">
           <div class="card-body">
-            Creator: <b class="card-title"><%= event.creator.email %></b>
-            <p class="card-text">Event: <%= event.title %></p>
+            Creator: <b class="card-title"><%= event.creator.email %></b><br/>
+            <span class="card-text">Event: <%= event.title %></span><br/>
+            It will occur in: <b><%= event.date_time %></b>
             <% if in_attendance?(user: current_user, event_id: event.id) %>
               <div class="d-flex">
                 <%= button_to 'You in', root_path, class: 'btn btn-secondary px-4', disabled: true %>

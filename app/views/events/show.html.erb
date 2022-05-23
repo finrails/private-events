@@ -3,6 +3,8 @@
     Event: <i><%= @event.title %></i><br/>
     Author: <b><%= @event.creator.email %></b><br/>
 
+    Description: <span><%= @event.description %></span><br/>
+
     Attendees:<br/>
 
     <% @event.attendees.each do |attendee| %>

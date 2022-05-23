@@ -1,5 +1,24 @@
-<p>
-  <% @user.created_events.each do |event| %>
-    <%= event.title %>
-  <% end %>
-</p>
+<section class="container">
+    <article class="border p-4">
+      <span>User: <b><%= @user.email %></b></span><br/>
+      <div class="d-flex flex-column gap-2 p-3 border">
+        Future Events:
+        <% @user.attendeed_events.future.each do |event| %>
+        <span class="border p-2">
+          Event: <%= event.title %><br/>
+          Date: <span><%= event.date_time %></span>
+        </span>
+        <% end %>
+      </div>
+      <div class="d-flex flex-column gap-2 mt-2 p-3 border">
+        Past Events:
+        <% @user.attendeed_events.past.each do |event| %>
+        <span class="border p-2">
+          Event: <%= event.title %><br/>
+          Date: <span class="text-decoration-line-through"><%= event.date_time %></span>
+        </span>
+        <% end %>
+      </div>
+
+    </article>
+</section>

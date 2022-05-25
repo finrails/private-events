@@ -7,9 +7,9 @@
             Creator: <b class="card-title"><%= event.creator.email %></b><br/>
             <span class="card-text">Event: <%= event.title %></span><br/>
             It will occur in: <b><%= event.date_time %></b>
-            <% if in_attendance?(user: current_user, event_id: event.id) %>
+            <% if EventAttendance.exists?(attendee_id: current_user.id, attendeed_event_id: event.id) %>
               <div class="d-flex">
-                <%= button_to 'You in', root_path, class: 'btn btn-secondary px-4', disabled: true %>
+                <%= button_to 'Cancel', unattend_event_path(event), class: 'btn btn-danger px-4', method: :delete %>
                 <%= link_to 'Show', event_path(event), class: 'btn btn-link' %>
               </div>
             <% else %>

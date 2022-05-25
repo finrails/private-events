@@ -13,6 +13,7 @@
   <body>
     <article class="container">
       <%= debug(params) %>
+      <%= debug(current_user.email) %>
     </article>
     <% if flash[:notice] %>
       <p class="alert alert-primary" role="alert"><%= notice %></p>

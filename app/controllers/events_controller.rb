@@ -13,6 +13,15 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
+  def unattend
+    @event = Event.find(params[:id])
+    @attendeed_event = EventAttendance.find_by(attendee_id: current_user.id, attendeed_event_id: @event.id)
+
+    @attendeed_event.destroy
+
+    redirect_to @event, notice: "Now you're not in the event attendance list."
+  end
+
   def update
     @event = Event.find(params[:id])
 

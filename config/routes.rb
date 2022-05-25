@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   resources :users, only: %i[ show ]
   resources :events do
     resources :attendances, only: %i[ destroy create ]
+    member do
+      delete 'unattend'
+    end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

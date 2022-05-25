@@ -11,6 +11,12 @@ class EventsController < ApplicationController
 
   def edit
     @event = Event.find(params[:id])
+
+    if @event.creator_id != current_user.id
+      flash[:alert] = "You're not the post owner!"
+      redirect_to events_path
+    end
+
   end
 
   def unattend

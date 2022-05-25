@@ -4,7 +4,11 @@
       <% Event.future.each do |event| %>
         <div class="card my-2">
           <div class="card-body">
-            Creator: <b class="card-title"><%= event.creator.email %></b><br/>
+            <% if event.creator_id == current_user.id %>
+              Creator: <b class="card-title">You</b><br/>
+            <% else %>
+              Creator: <b class="card-title"><%= event.creator.email %></b><br/>
+            <% end %>
             <span class="card-text">Event: <%= event.title %></span><br/>
             It will occur in: <b><%= event.date_time %></b>
             <% if EventAttendance.exists?(attendee_id: current_user.id, attendeed_event_id: event.id) %>
@@ -29,7 +33,13 @@
       <% Event.past.each do |event| %>
         <div class="card my-2">
           <div class="card-body">
-            Creator: <b class="card-title text-decoration-line-through"><%= event.creator.email %></b><br/>
+
+            <% if event.creator_id == current_user.id %>
+              Creator: <b class="card-title text-decoration-line-through">You</b><br/>
+            <% else %>
+              Creator: <b class="card-title text-decoration-line-through"><%= event.creator.email %></b><br/>
+            <% end %>
+
             <span class="card-text text-decoration-line-through">Event: <%= event.title %></span><br/>
             It will occur in: <b class="text-decoration-line-through"><%= event.date_time %></b>
           </div>

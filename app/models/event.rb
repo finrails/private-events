@@ -6,10 +6,6 @@ class Event < ApplicationRecord
 
   has_many :attendees, through: :attendances
 
-  validates :title, presence: true, length: { in: 6..20 }
-  validates :description, presence: true
-  validates :date_time, presence: true
-
   scope :past, -> { where('date_time < ?', Date.today).order(date_time: :desc) }
   scope :future, -> { where('date_time > ?', Date.today).order(:date_time) }
 end

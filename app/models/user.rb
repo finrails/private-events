@@ -10,4 +10,10 @@ class User < ApplicationRecord
   has_many :event_attendances, foreign_key: "attendee_id"
 
   has_many :attendeed_events, through: :event_attendances
+
+
+  has_many :invitations, class_name: "Invitation", foreign_key: "user_id"
+  has_many :invites, class_name: "Invitation", foreign_key: "receiver_id"
+
+  has_many :lixos, through: :invitations, source: :receiver
 end

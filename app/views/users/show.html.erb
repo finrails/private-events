@@ -1,5 +1,6 @@
 <section class="container">
     <article class="border p-4">
+      <%= button_to 'Invite', invite_user_event_path(id: 1, user_id: @user.id), method: :post %>
       <span>User: <b><%= @user.email %></b></span><br/>
       <div class="d-flex flex-column gap-2 p-3 border border-2">
         Future Events:

@@ -43,6 +43,19 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
+  def invite
+    @user = User.find(params[:user_id])
+    @event = Event.find(params[:id])
+
+    @invite = current_user.invitations.build(receiver_id: @user.id, event_id: @event.id)
+
+    if @invite.save
+      redirect_to user_path(@user), notice: "You've invited the user #{@user.email}!"
+    else
+      redirect_to user_path(@user), alert: "Something goes wrong, try do it again."
+    end
+  end
+
   def create
     @event = current_user.created_events.build(event_params)
 

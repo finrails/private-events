@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   resources :events, only: %i[ edit update index new create ]
   resources :users, only: %i[ show ]
   resources :events do
+    member do
+      post 'invite/:user_id', action: 'invite', as: :invite_user
+    end
     resources :attendances, only: %i[ destroy create ]
     member do
       delete 'unattend'

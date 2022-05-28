@@ -27,7 +27,7 @@
           <div class="border border-2 p-2 d-flex flex-column">
             <span>Invitation by: <%= User.find(invitation.user_id).email %></span>
             <span>Event: <%= Event.find(invitation.event_id).title %></span>
-            <%= button_to 'Accept', root_path, class: 'btn btn-outline-primary mt-2' %>
+            <%= button_to 'Accept', accept_invitation_path(invitation.id), method: :put, class: 'btn btn-outline-primary mt-2' %>
           <% end %>
         </div>
       <% end %>

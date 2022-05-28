@@ -11,8 +11,18 @@
       <div class="border p-2 mt-2">
         <%= attendee.email %> <%= link_to '↪', user_path(attendee), class: 'text-decoration-none' %>
       </div>
-    <% end %><br/>
+    <% end %>
 
-    <%= link_to 'Edit it', edit_event_path(@event), class: 'btn btn-link' %>
+    <%= link_to 'Edit it', edit_event_path(@event), class: 'btn-link' %>
+
+    <article class="border p-2 mt-4 d-flex flex-column gap-2">
+      <span>Invite some users.</span>
+      <% @users.each do |user| %>
+        <div class="p-2 border justify-content-between d-flex">
+          <span><%= user.email %></span>
+          <%= button_to 'Invite', invite_user_event_path(@event.id, user.id), style: 'border: none; background-color: white;', class: 'btn-link' %>
+        </div>
+      <% end %>
+    </article>
   </article>
 </section>

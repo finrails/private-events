@@ -1,4 +1,4 @@
-<section class="container">
+<section class="container d-flex flex-column">
     <article class="border p-4">
       <%= button_to 'Invite', invite_user_event_path(id: 1, user_id: @user.id), method: :post %>
       <span>User: <b><%= @user.email %></b></span><br/>
@@ -21,5 +21,19 @@
         <% end %>
       </div>
 
+    <article class="border-4 border mt-4 d-flex flex-column gap-2 p-4">
+      <b>Mail Box:</b>
+      <% @user.invites.each do |invitation| %>
+        <% unless invitation.status %>
+          <div class="border border-2 p-2 d-flex flex-column">
+            <span>Invitation by: <%= User.find(invitation.user_id).email %></span>
+            <span>Event: <%= Event.find(invitation.event_id).title %></span>
+            <%= button_to 'Accept', root_path, class: 'btn btn-outline-primary mt-2' %>
+          <% end %>
+        </div>
+      <% end %>
     </article>
+
+    </article>
+
 </section>

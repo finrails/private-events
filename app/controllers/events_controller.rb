@@ -51,9 +51,9 @@ class EventsController < ApplicationController
     @invite = current_user.invitations.build(receiver_id: @user.id, event_id: @event.id)
 
     if @invite.save
-      redirect_to user_path(@user), notice: "You've invited the user #{@user.email}!"
+      redirect_to event_path(@event), notice: "You've invited the user #{@user.email}!"
     else
-      redirect_to user_path(@user), alert: "Something goes wrong, try do it again."
+      redirect_to event_path(@event), alert: "Something goes wrong, try do it again."
     end
   end
 

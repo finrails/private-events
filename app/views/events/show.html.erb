@@ -21,6 +21,7 @@
         <% next if Invitation.where(user_id: current_user.id, receiver_id: user.id, event_id: @event.id, status: true).exists? %>
 
         <% unless Invitation.where(user_id: current_user.id, receiver_id: user.id, event_id: @event.id, status: false).exists? %>
+          <% next if @event.creator_id == user.id || current_user.id == user.id %>
           <div class="p-2 border justify-content-between d-flex">
             <span><%= user.email %></span>
             <%= button_to 'Invite', invite_user_event_path(@event.id, user.id), style: 'border: none; background-color: white;', class: 'btn-link' %>

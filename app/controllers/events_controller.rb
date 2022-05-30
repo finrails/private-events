@@ -45,6 +45,11 @@ class EventsController < ApplicationController
   end
 
   def invite
+    unless current_user.event_owner?(event_id: params[:id])
+      redirect_to event_path(params[:id]), alert: "You're not the event's owner!"
+      return false
+    end
+
     @user = User.find(params[:user_id])
     @event = Event.find(params[:id])
 

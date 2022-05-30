@@ -62,18 +62,6 @@ class EventsController < ApplicationController
     end
   end
 
-  def accept_invitation
-    @invitation = Invitation.find(params[:invitation_id])
-    @event = Event.find(@invitation.event_id)
-    @attendance = @event.attendances.build(attendee_id: @invitation.receiver_id)
-
-    if @invitation.update(status: true) && @attendance.save
-      redirect_to user_path(@invitation.receiver_id), notice: "Now, you're in the event!"
-    else
-      redirect_to root_path, alert: 'Something goes wrong, please try do it again.'
-    end
-  end
-
   def create
     @event = current_user.created_events.build(event_params)
 

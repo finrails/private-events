@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :events, only: %i[ edit update index new create ]
   resources :users, only: %i[ show ]
-  put 'accept/invitation/:invitation_id', controller: :events, action: 'accept_invitation', as: :accept_invitation
+  put 'accept/invitation/:invitation_id', controller: :users, action: 'accept_invitation', as: :accept_invitation
 
   resources :events do
     member do

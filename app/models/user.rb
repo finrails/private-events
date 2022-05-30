@@ -23,4 +23,10 @@ class User < ApplicationRecord
 
     false
   end
+
+  def page_owner?(page_id:)
+    return true if self.id == page_id
+
+    false
+  end
 end

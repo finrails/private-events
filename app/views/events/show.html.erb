@@ -18,10 +18,10 @@
     <article class="border p-2 mt-4 d-flex flex-column gap-2">
       <span>Invite some users.</span>
       <% @users.each do |user| %>
-        <% next if Invitation.where(user_id: current_user.id, receiver_id: user.id, event_id: @event.id, status: true).exists? %>
+        <% next if @event.creator_id == user.id || current_user.id == user.id %>
+        <% next if EventAttendance.where(attendee_id: user.id, attendeed_event_id: @event.id).exists? %>
 
-        <% unless Invitation.where(user_id: current_user.id, receiver_id: user.id, event_id: @event.id, status: false).exists? %>
-          <% next if @event.creator_id == user.id || current_user.id == user.id %>
+        <% unless Invitation.where(user_id: @event.creator_id, receiver_id: user.id, event_id: @event.id, status: false).exists? %>
           <div class="p-2 border justify-content-between d-flex">
             <span><%= user.email %></span>
             <%= button_to 'Invite', invite_user_event_path(@event.id, user.id), style: 'border: none; background-color: white;', class: 'btn-link' %>

@@ -1,7 +1,6 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  date: MyString
-
-two:
-  date: MyString
+  id: 1
+  title: 'Chupeta'
+  creator_id: 1

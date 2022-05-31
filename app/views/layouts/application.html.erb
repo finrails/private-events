@@ -10,9 +10,8 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="d-flex flex-column min-vh-100">
     <article class="container">
-      <%= debug(params) %>
 
       <% if current_user %>
         <%= debug(current_user.email) %>
@@ -28,5 +27,6 @@
     <% end %>
 
     <%= yield %>
+    <%= render partial: 'shared/footer' %>
   </body>
 </html>

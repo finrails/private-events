@@ -1,7 +1,11 @@
 require "test_helper"
 
 class EventTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  setup do
+    @event = Event.new
+  end
+
+  test "should not save an event without data" do
+    assert_not @event.valid?
+  end
 end

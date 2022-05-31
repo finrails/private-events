@@ -1,29 +1,32 @@
+<%= render partial: 'shared/header' %>
 <section class="container">
   <div class="row">
     <article class="col">
       <% Event.future.each do |event| %>
         <div class="card my-2">
+          <div class="card-header"><%= event.date_time.strftime("%d/%m/%Y - %I:%M %p") %></div>
           <div class="card-body">
+            <h5 class="card-title"><%= event.title %></h5>
+            <p class="card-text"><%= event.description %></p>
             <% if event.creator_id == current_user.id %>
-              Creator: <b class="card-title">You</b><br/>
+              By: <b class="card-text">You</b><br/>
             <% else %>
-              Creator: <b class="card-title"><%= event.creator.email %></b><br/>
+              By: <b class="card-text"><%= event.creator.email %></b><br/>
             <% end %>
-            <span class="card-text">Event: <%= event.title %></span><br/>
-            It will occur in: <b><%= event.date_time %></b>
+
             <% if EventAttendance.exists?(attendee_id: current_user.id, attendeed_event_id: event.id) %>
-              <div class="d-flex">
-                <%= button_to 'Cancel', unattend_event_path(event), class: 'btn btn-danger px-4', method: :delete %>
-                <%= link_to 'Show', event_path(event), class: 'btn btn-link' %>
+              <div class="d-flex my-2">
+                <%= button_to 'Cancel', unattend_event_path(event), class: 'btn btn-danger px-5', method: :delete %>
+                <%= link_to '👁 Show', event_path(event), class: 'text-decoration-none py-2 btn btn-link' %>
               </div>
             <% elsif event.creator_id == current_user.id %>
               <div class="d-flex">
-                <%= link_to 'Show', event_path(event), class: 'py-2 btn-link' %>
+                <%= link_to '👁 Show', event_path(event), class: 'text-decoration-none py-2 btn-link' %>
               </div>
             <% else %>
-              <div class="d-flex">
-                <%= button_to 'Get in', event_attendances_path(event), method: :post, class: 'btn btn-primary px-4' %>
-                <%= link_to 'Show', event_path(event), class: 'btn btn-link' %>
+              <div class="d-flex my-2">
+                <%= button_to 'Get in', event_attendances_path(event), method: :post, class: 'px-5 btn btn-primary px-4' %>
+                <%= link_to '👁 Show', event_path(event), class: 'text-decoration-none py-2 btn btn-link' %>
               </div>
             <% end %>
           </div>

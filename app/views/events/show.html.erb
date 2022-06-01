@@ -1,19 +1,23 @@
+<%= render partial: 'shared/header' %>
 <section class="container">
-  <article class="border p-4">
-    Event: <i><%= @event.title %></i><br/>
-    Author: <b><%= @event.creator.email %></b><br/>
+  <article class="row">
+    <div class="col">
+      <div class="card">
+          <div class="card-header"><%= @event.date_time.strftime("%d/%m/%Y - %I:%M %p") %> <%= link_to 'Edit it', edit_event_path(@event), class: 'btn-link' %></div>
+          <div class="card-body">
+          <h3 class="card-title"><%= @event.title %></h3>
+          <p class="card-text"><%= @event.creator.email %></p>
 
-    Description: <span><%= @event.description %></span><br/>
+          <p class="card-text fs-6"><%= @event.description %></p>
+          <ul class="list-group">
+            Event Attendees:
+            <% @event.attendees.each do |attendee| %>
+              <%= link_to attendee.email, user_path(attendee), class: "list-group-item" %>
+            <% end %>
+          </ul>
 
-    Attendees:<br/>
-
-    <% @event.attendees.each do |attendee| %>
-      <div class="border p-2 mt-2">
-        <%= attendee.email %> <%= link_to '↪', user_path(attendee), class: 'text-decoration-none' %>
+        </div>
       </div>
-    <% end %>
-
-    <%= link_to 'Edit it', edit_event_path(@event), class: 'btn-link' %>
 
     <article class="border p-2 mt-4 d-flex flex-column gap-2">
       <span>Invite some users.</span>
@@ -29,5 +33,6 @@
         <% end %>
       <% end %>
     </article>
+    </div>
   </article>
 </section>

@@ -8,6 +8,16 @@ class EventsController < ApplicationController
     @event = Event.new
   end
 
+  def destroy
+    event = Event.find(params[:id])
+
+    if current_user.event_owner?(event_id: event.id) && event.destroy
+      redirect_to events_path, notice: "Your event has been destroyed!"
+    else
+      redirect_to events_path, alert: "You're not the post' owner!"
+    end
+  end
+
   def edit
     @event = Event.find(params[:id])
 

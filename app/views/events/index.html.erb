@@ -1,5 +1,12 @@
 <%= render partial: 'shared/header' %>
-<section class="container">
+<% if flash[:notice] %>
+  <span class="alert alert-primary" role="alert"><%= notice %></span>
+<% end %>
+
+<% if flash[:alert] %>
+  <span class="alert alert-warning" role="alert"><%= alert %></span>
+<% end %>
+<section class="container mt-5">
   <div class="row">
     <article class="col">
       <% Event.future.each do |event| %>

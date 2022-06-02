@@ -11,16 +11,6 @@
   </head>
 
   <body style="background-color: #f8f9fa;" class="d-flex flex-column min-vh-100">
-    <article class="container">
-
-    </article>
-    <% if flash[:notice] %>
-      <p class="alert alert-primary" role="alert"><%= notice %></p>
-    <% end %>
-
-    <% if flash[:alert] %>
-      <p class="alert alert-warning" role="alert"><%= alert %></p>
-    <% end %>
 
     <%= yield %>
     <%= render partial: 'shared/footer' %>

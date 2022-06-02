@@ -1,38 +1,24 @@
-<section class="container d-flex flex-column">
-    <article class="border p-4">
-      <span>User: <b><%= @user.email %></b></span><br/>
-      <div class="d-flex flex-column gap-2 p-3 border border-2">
-        Future Events:
-        <% @user.attendeed_events.future.each do |event| %>
-        <span class="border p-2">
-          Event: <%= event.title %><br/>
-          Date: <span><%= event.date_time %></span>
-        </span>
-        <% end %>
+<%= render partial: 'shared/header' %>
+<section class="container mt-5 d-flex flex-column">
+    <article class="card my-2">
+      <div class="card-header">Profile</div>
+      <div class="card-body">
+        <span class="card-text">Email: <%= @user.email %></span>
       </div>
-      <div class="d-flex flex-column gap-2 mt-2 p-3 border border-2">
-        Past Events:
-        <% @user.attendeed_events.past.each do |event| %>
-        <span class="border p-2">
-          Event: <%= event.title %><br/>
-          Date: <span class="text-decoration-line-through"><%= event.date_time %></span>
-        </span>
-        <% end %>
-      </div>
-
-    <article class="border-4 border mt-4 d-flex flex-column gap-2 p-4">
-      <b>Mail Box:</b>
-      <% @user.invites.each do |invitation| %>
-        <% unless invitation.status %>
-          <div class="border border-2 p-2 d-flex flex-column">
-            <span>Invitation by: <%= User.find(invitation.user_id).email %></span>
-            <span>Event: <%= Event.find(invitation.event_id).title %></span>
-            <%= button_to 'Accept', accept_invitation_path(invitation.id), method: :put, class: 'btn btn-outline-primary mt-2' %>
-          <% end %>
-        </div>
-      <% end %>
     </article>
 
+    <article class="card mt-4">
+      <div class="card-header">Mail Box:</div>
+      <ul class="list-group">
+        <% @user.invites.each do |invitation| %>
+          <% unless invitation.status %>
+              <li class="list-group-item d-flex flex-column">
+                <span class="card-text">Invitation by: <%= User.find(invitation.user_id).email %></span>
+                <span class="card-text">Event: <%= Event.find(invitation.event_id).title %></span>
+              <%= button_to 'Accept', accept_invitation_path(invitation.id), method: :put, class: 'btn btn-outline-primary mt-2' %>
+            </li>
+            <% end %>
+        <% end %>
+      </ul>
     </article>
-
 </section>

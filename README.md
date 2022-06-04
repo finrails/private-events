@@ -14,9 +14,9 @@ You can try it out [here](https://sleepy-castle-22863.herokuapp.com/)
 For those who are not patient, here are a couple of screenshots of what it looks like
 
 <p float = 'left'>
-  <img src="https://i.imgur.com/O8HJ9Pa.png" alt="Private events home page" width="390" height="200">
-  <img src="https://i.imgur.com/964U3CU.png" alt="Private events event card" width="390" height="200">
-  <img src="https://i.imgur.com/hFcsIi9.png" alt="Private events guest list" width="230" height="200">
+  <img src="https://i.imgur.com/O8HJ9Pa.png" alt="Private events home page" width="600" height="400">
+  <img src="https://i.imgur.com/964U3CU.png" alt="Private events event card" width="600" height="400">
+  <img src="https://i.imgur.com/hFcsIi9.png" alt="Private events guest list" width="600" height="400">
 </p>
 
 ## Functionality

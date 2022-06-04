@@ -6,18 +6,17 @@ A project completed as part of [The Odin Ruby on Rails Learning Track](https://w
 
 ## Live Demo
 
-You can try it out [here](https://gentle-shelf-63524.herokuapp.com/)  
-**HEADS UP**: Heroku server may need up to 30 sec to fire up a dyno. Be patient! :)  
-You can use 'Fred Flintstone', 'Alice', 'Mickey Mouse', 'Homer Simpson' or 'SpongeBob' as test users to see full functionality.
+You can try it out [here](https://sleepy-castle-22863.herokuapp.com/)  
+**HEADS UP**: Heroku server may need up to 30 sec to fire up a dyno. Be patient! :)
 
 ## Screenshots
 
 For those who are not patient, here are a couple of screenshots of what it looks like
 
 <p float = 'left'>
-  <img src="img/private_events.png" alt="Private events home page" width="390" height="200">
-  <img src="img/private_events2.png" alt="Private events event card" width="180" height="200">
-  <img src="img/private_events3.png" alt="Private events guest list" width="230" height="200">
+  <img src="https://i.imgur.com/O8HJ9Pa.png" alt="Private events home page" width="390" height="200">
+  <img src="https://i.imgur.com/964U3CU.png" alt="Private events event card" width="390" height="200">
+  <img src="https://i.imgur.com/hFcsIi9.png" alt="Private events guest list" width="230" height="200">
 </p>
 
 ## Functionality

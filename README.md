@@ -32,7 +32,7 @@ To get started with the app, make sure you have Rails and Git installed on your 
 
   Clone the repo to your local machine: 
   ```ruby
-  $ git clone https://github.com/Pandenok/private-events.git
+  $ git clone https://github.com/finrails/private-events.git
   ```
   Then, install the needed gems:
   ```ruby
@@ -41,10 +41,6 @@ To get started with the app, make sure you have Rails and Git installed on your 
   Next, migrate the database:
   ```ruby
   $ rails db:migrate
-  ```
-  If you want to load sample users and events, use seeds:
-  ```ruby
-  $ rails db:seed
   ```
   Finally, on root path run a local server:
   ```ruby
@@ -58,47 +54,6 @@ To get started with the app, make sure you have Rails and Git installed on your 
 
 ## Reflection
 
-This was an awesome rundown practice and I had a really joyful fun playing with associations, until I bumped into extra credit on allowance to invite other users.
-
-<details>
-  <summary>Spoiler alert! Click to continue reading...</summary>
-
-  In the beginning, I added an `Invitations` model to my app, because in real world `invitation` and `enrollment` are two conceptually different things. And I made it work with this setup. IMHO, two join models looked very similar:
-  ```ruby
-  class Enrollment < ApplicationRecord
-    belongs_to :event
-    belongs_to :user
-  end
-  class Invitation < ApplicationRecord
-    belongs_to :event
-    belongs_to :host, class_name: "User"
-    belongs_to :invitee, class_name: "User"
-  end
-  ```
-  So, I decided to go with one model, got rid off `Invitations` and put everything in `Enrollment`.
-  ```ruby
-  class Enrollment < ApplicationRecord
-    belongs_to :event
-    belongs_to :user
-    belongs_to :host, class_name: "User"
-    belongs_to :invitee, class_name: "User"
-  end
-  ```
-  As far as `User` invites other `User`, it felt right to apply self joins, so I created something like
-  ```ruby
-  class User < ApplicationRecord
-    has_many :events
-    has_many :enrollments
-    has_many :attended_events, through: :enrollments, source: :event
-    
-    has_many :invited_users, foreign_key: "host_id", class_name: 'Enrollment'
-    has_many :invitees, through: :invited_users
-    has_many :hosting_users, foreign_key: "invitee_id", class_name: 'Enrollment'
-    has_many :hosts, through: :hosting_users
-  end
-  ```
-  And to my surprise associations were working! As far I got rid off `Invitation` controller I had no idea on how to split `enrollment` and `invitation` creation, what routes to use, etc. At this point I tried different things and finished asking support to the forum. @GopherJackets was really helpful in the understanding of my model set up and cleaning it up. Then the conversation with @nalyk inspired me to find an interesting solution: when a creator of the event sends an invitation, it triggers the creation of a new `enrollment` joining only `invitee_id` and `event_id` (I had to set `user_id` as `optional` to make it work). When the invited user accepts the invite by enrolling to the event, it was updating an existing `enrollment` with his `id` in `user_id` column. The only issue was on how to drop an enrollment without canceling the invitation. And here I had an eye-opening talk with @Roli who not only explained how to fix the bug, but helped me polish completely the app and adviced to use `enum status`, which makes the extra task super easy. You're seeing the final result of Data model.
-
-  A couple of interesting articles on `enum` are [here](https://sipsandbits.com/2018/04/30/using-database-native-enums-with-rails/) and [here](https://naturaily.com/blog/ruby-on-rails-enum). 
+This was an awesome rundown practice and I had a really joyful fun playing with associations, until I bumped into extra credit on allowance to invite other users, but i did it, i really have created an invitation system that works well.
 
 </details> 

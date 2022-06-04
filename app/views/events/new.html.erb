@@ -1,4 +1,18 @@
 <%= render partial: 'shared/header' %>
+
+<% if flash[:notice] %>
+  <span data-controller="alert" class="d-flex justify-content-between alert alert-warning" role="alert">
+    <%= notice %> <button type="button" data-action="alert#hide" class="btn-close" aria-label="Close"></button>
+  </span>
+<% end %>
+
+
+<% if flash[:alert] %>
+  <span data-controller="alert" class="d-flex justify-content-between alert alert-warning" role="alert">
+    <%= alert %> <button type="button" data-action="alert#hide" class="btn-close" aria-label="Close"></button>
+  </span>
+<% end %>
+
 <section class="container">
   <div class="row d-flex justify-content-center">
     <div class="col-lg-6 col-md-8 col-sm-10 my-5">
